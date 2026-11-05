@@ -1,6 +1,6 @@
 # GrokBNB
 
-Next.js + wagmi starter with BNB Chain support.
+Next.js + wagmi + RainbowKit starter with BNB Chain support.
 
 ## Getting Started
 
@@ -11,23 +11,25 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## WalletConnect Project ID (required for full wallet list)
+
+1. Go to [cloud.reown.com](https://cloud.reown.com) and create a free project
+2. Copy the Project ID
+3. Create `.env.local`:
+
+```
+NEXT_PUBLIC_WC_PROJECT_ID=your_project_id_here
+```
+
+On Vercel: add the same variable in **Project Settings → Environment Variables**.
+
 ## Features
 
 - Next.js App Router
+- RainbowKit (beautiful connect button)
 - wagmi v2 + viem
-- TanStack Query
-- Wallet connection (Injected + optional WalletConnect)
 - Chains: Ethereum, Sepolia, Base, Base Sepolia, BNB Chain, BNB Testnet
-
-## Optional: WalletConnect
-
-1. Get a free Project ID at [cloud.reown.com](https://cloud.reown.com)
-2. Create `.env.local`:
-
-```
-NEXT_PUBLIC_WC_PROJECT_ID=your_project_id
-```
 
 ## Deploy on Vercel
 
-Just push to `main`. Vercel auto-deploys.
+Push to `main` — Vercel auto-deploys.

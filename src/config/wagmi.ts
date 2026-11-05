@@ -1,25 +1,10 @@
-import { createConfig, http } from 'wagmi'
+import { getDefaultConfig } from '@rainbow-me/rainbowkit'
 import { mainnet, sepolia, base, baseSepolia, bsc, bscTestnet } from 'wagmi/chains'
-import { injected, walletConnect } from 'wagmi/connectors'
 
-const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID
-
-export const config = createConfig({
+export const config = getDefaultConfig({
+  appName: 'GrokBNB',
+  projectId: process.env.NEXT_PUBLIC_WC_PROJECT_ID || 'YOUR_PROJECT_ID',
   chains: [mainnet, sepolia, base, baseSepolia, bsc, bscTestnet],
-  connectors: [
-    injected(),
-    ...(projectId
-      ? [walletConnect({ projectId, showQrModal: true })]
-      : []),
-  ],
-  transports: {
-    [mainnet.id]: http(),
-    [sepolia.id]: http(),
-    [base.id]: http(),
-    [baseSepolia.id]: http(),
-    [bsc.id]: http(),
-    [bscTestnet.id]: http(),
-  },
   ssr: true,
 })
 
