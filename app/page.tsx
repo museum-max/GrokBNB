@@ -2,15 +2,31 @@
 
 import { useAccount, useConnect, useDisconnect, useChainId, useSwitchChain } from 'wagmi'
 import { mainnet, sepolia, base, baseSepolia, bsc, bscTestnet } from 'wagmi/chains'
+import { useEffect, useState } from 'react'
 
 const chains = [mainnet, sepolia, base, baseSepolia, bsc, bscTestnet]
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false)
   const { address, isConnected } = useAccount()
   const { connectors, connect, isPending } = useConnect()
   const { disconnect } = useDisconnect()
   const chainId = useChainId()
   const { switchChain } = useSwitchChain()
+
+  // Prevent hydration mismatch (server vs client wallet state)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return (
+      <main style={{ padding: '2rem', fontFamily: 'system-ui, sans-serif', maxWidth: 640, margin: '0 auto' }}>
+        <h1 style={{ marginBottom: '0.5rem' }}>GrokBNB</h1>
+        <p style={{ color: '#666' }}>Loading...</p>
+      </main>
+    )
+  }
 
   return (
     <main style={{ padding: '2rem', fontFamily: 'system-ui, sans-serif', maxWidth: 640, margin: '0 auto' }}>
@@ -31,7 +47,7 @@ export default function Home() {
                 border: '1px solid #ddd',
                 background: '#111',
                 color: '#fff',
-                cursor: 'pointer',
+                cursor: isPending ? 'not-allowed' : 'pointer',
                 fontSize: 16,
               }}
             >

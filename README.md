@@ -1,6 +1,6 @@
 # GrokBNB
 
-Next.js + wagmi starter.
+Next.js + wagmi starter with BNB Chain support.
 
 ## Getting Started
 
@@ -30,8 +30,4 @@ NEXT_PUBLIC_WC_PROJECT_ID=your_project_id
 
 ## Deploy on Vercel
 
-Push to `main` and import the repo in the Vercel dashboard, or run:
-
-```bash
-npx vercel
-```
+Just push to `main`. Vercel auto-deploys.
